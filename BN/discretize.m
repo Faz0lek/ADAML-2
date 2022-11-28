@@ -1,12 +1,17 @@
 clc
-    
+
+%% Choose used variables
+load("all_data.mat")
+data = all_data(:,[3,4,6,8,9]);
+
+%%
 data = rmmissing(data);
-data_o =  data(:,1:6);
-classes = data(:,7);
-nseg = 50;
+data_o =  data(:,1:end-1);
+classes = data(:,end);
+nseg = 10;
 data2 = [];
 
-for i = 1:6
+for i = 1:size(data,2)-1
     
     var     = data_o(:,i);
 
@@ -34,5 +39,5 @@ for i = 1:6
     
 end
 
-data(:,1:6) = data2;
-data(:,7) = classes;
+data(:,1:end-1) = data2;
+data(:,end) = classes;
